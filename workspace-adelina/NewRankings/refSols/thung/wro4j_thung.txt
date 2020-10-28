@@ -1,0 +1,11 @@
+Data.ro.isdc.wro.http.WroFilter
+Data.ro.isdc.wro.manager.factory.ServletContextAwareWroManagerFactory
+Data.ro.isdc.wro.manager.WroManager
+Data.ro.isdc.wro.model.group.processor.GroupsProcessor
+Data.ro.isdc.wro.model.group.Group
+Data.ro.isdc.wro.model.resource.factory.UriLocatorFactory
+Data.ro.isdc.wro.model.resource.locator.ServletContextUriLocator
+Data.ro.isdc.wro.model.resource.locator.UrlUriLocator
+Data.ro.isdc.wro.model.resource.Resource
+Data.ro.isdc.wro.model.resource.ResourceType
+Data.ro.isdc.wro.model.WroModel

@@ -1,0 +1,8 @@
+org.apache.tools.ant.Project
+org.apache.tools.ant.Target
+org.apache.tools.ant.UnknownElement
+org.apache.tools.ant.RuntimeConfigurable
+org.apache.tools.ant.Task
+org.apache.tools.ant.IntrospectionHelper
+org.apache.tools.ant.helper.ProjectHelper2
+org.apache.tools.ant.helper.ProjectHelperImpl

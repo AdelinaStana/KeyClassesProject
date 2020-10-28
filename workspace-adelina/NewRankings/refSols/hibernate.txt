@@ -1,0 +1,15 @@
+org.hibernate.Session
+org.hibernate.engine.SessionImplementor
+org.hibernate.impl.SessionImpl
+org.hibernate.SessionFactory
+org.hibernate.engine.SessionFactoryImplementor
+org.hibernate.connection.ConnectionProvider
+org.hibernate.Transaction
+org.hibernate.transaction.TransactionFactory
+org.hibernate.mapping.Table
+org.hibernate.mapping.Column
+org.hibernate.type.Type
+org.hibernate.cfg.Configuration
+org.hibernate.Query
+org.hibernate.Criteria
+org.hibernate.Hibernate

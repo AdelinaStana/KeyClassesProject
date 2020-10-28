@@ -1,0 +1,11 @@
+implementation = 4
+inheritance = 4
+member = 4 1
+local_variable = 1 1
+parameter = 4 1
+static_invocation = 4 1
+return = 4
+member_access = 1
+type_binding = 1
+instantiation = 1
+cast = 1

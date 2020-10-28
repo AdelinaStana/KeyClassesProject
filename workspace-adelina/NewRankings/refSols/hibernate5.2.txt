@@ -1,0 +1,14 @@
+org.hibernate.Session
+org.hibernate.engine.spi.SessionImplementor
+org.hibernate.SessionFactory
+org.hibernate.engine.spi.SessionFactoryImplementor
+org.hibernate.engine.jdbc.connections.spi.ConnectionProvider
+org.hibernate.Transaction
+org.hibernate.mapping.Table
+org.hibernate.mapping.Column
+org.hibernate.type.Type
+org.hibernate.cfg.Configuration
+org.hibernate.Query
+org.hibernate.Criteria
+org.hibernate.criterion.Criterion
+org.hibernate.criterion.Projection

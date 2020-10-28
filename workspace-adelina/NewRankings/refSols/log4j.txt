@@ -1,0 +1,9 @@
+org.apache.logging.log4j.core.config.Configuration
+org.apache.logging.log4j.core.LoggerContext
+org.apache.logging.log4j.core.Filter
+org.apache.logging.log4j.core.config.LoggerConfig
+org.apache.logging.log4j.core.Layout
+org.apache.logging.log4j.core.Logger
+org.apache.logging.log4j.core.lookup.StrSubstitutor
+org.apache.logging.log4j.core.Appender
+org.apache.logging.log4j.core.lookup.StrLookup

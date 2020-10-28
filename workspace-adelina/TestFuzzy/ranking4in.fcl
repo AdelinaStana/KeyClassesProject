@@ -1,0 +1,187 @@
+/*
+	Class ranking with 4 input variables
+*/
+
+FUNCTION_BLOCK ranker	// Block definition (there may be more than one block per file)
+
+VAR_INPUT				// Define input variables
+	Size : REAL;
+	Win : REAL;
+	Wout : REAL;
+	PR_undir : REAL;
+END_VAR
+
+VAR_OUTPUT				// Define output variable
+	decision : REAL;
+END_VAR
+
+FUZZIFY Size			// Fuzzify input variable 'Size': {'S', 'M' , 'L'}
+	TERM S := (0, 1) (10, 1) (40, 0) ; 
+	TERM M := (10, 0) (40,1) (70,1) (90,0);
+	TERM L := (70, 0) (95, 1) (100, 1);
+END_FUZZIFY
+
+FUZZIFY Win			// Fuzzify input variable 'Win': { 'VS', 'S', 'L', 'VL' }
+	TERM VS:= (0, 1) (5, 1) (10,0) ;
+	TERM S := (5,0) (10,1) (40, 1) (60, 0);
+	TERM L := (40, 0) (60, 1) (85, 1) (98, 0)  ;
+	TERM VL := (85,0) (98,1) (100, 1);
+END_FUZZIFY
+
+FUZZIFY Wout			// Fuzzify input variable 'Wout': { 'VS', 'S', 'L', 'VL' }
+	TERM VS:= (0, 1) (5, 1) (10,0) ;
+	TERM S := (5,0) (10,1) (40, 1) (60, 0);
+	TERM L := (40, 0) (60, 1) (85, 1) (98, 0)  ;
+	TERM VL := (85,0) (98,1) (100, 1);
+END_FUZZIFY
+
+
+
+FUZZIFY PR_undir			// Fuzzify input variable 'PR_undir': {  'S', 'L' }
+	
+	TERM S := (0,1) (70,1) (98, 0);
+	TERM L := (70, 0) (98, 1) (100, 1);
+	
+END_FUZZIFY
+
+DEFUZZIFY decision			// Defzzzify output variable 'decision' : {'SR', 'WR', 'WS', 'SS' }
+	TERM SR := (0,1) (1, 0);
+	TERM WR := (19, 0) (20, 1) (21, 0);
+	TERM WS := (39, 0) (40, 1) (41, 0);
+	TERM SS := (61, 0) (62, 1);
+	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
+	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;			// Use 'min' for 'and' (also implicit use 'max' for 'or' to fulfill DeMorgan's Law)
+	ACT : MIN;			// Use 'min' activation method
+	ACCU : MAX;			// Use 'max' accumulation method
+
+	RULE 1 : IF Size IS S AND Win IS VS AND Wout IS VS AND PR_undir IS S THEN decision IS SR;
+	RULE 2 : IF Size IS S AND Win IS VS AND Wout IS  S  AND PR_undir IS S THEN decision IS SR;
+	RULE 3 : IF Size IS S AND Win IS VS AND Wout IS  L  AND PR_undir IS S THEN decision IS SR;
+	RULE 4 : IF Size IS S AND Win IS VS AND Wout IS VL  AND PR_undir IS S THEN decision IS WS;
+	
+	RULE 5 : IF Size IS S AND Win IS  S AND Wout IS VS  AND PR_undir IS S THEN decision IS SR;
+	RULE 6 : IF Size IS S AND Win IS  S AND Wout IS  S  AND PR_undir IS S THEN decision IS SR;
+	RULE 7 : IF Size IS S AND Win IS  S AND Wout IS  L  AND PR_undir IS S THEN decision IS WS;
+	RULE 8 : IF Size IS S AND Win IS  S AND Wout IS VL  AND PR_undir IS S THEN decision IS WS;
+	
+	RULE 9 : IF Size IS S AND Win IS  L AND Wout IS VS  AND PR_undir IS S THEN decision IS WR;
+	RULE 10 : IF Size IS S AND Win IS  L AND Wout IS  S  AND PR_undir IS S THEN decision IS WR;
+	RULE 11 : IF Size IS S AND Win IS  L AND Wout IS  L  AND PR_undir IS S THEN decision IS WS;
+	RULE 12 : IF Size IS S AND Win IS  L AND Wout IS VL  AND PR_undir IS S THEN decision IS SS;
+
+    RULE 13 : IF Size IS S AND Win IS  VL AND Wout IS VS  AND PR_undir IS S THEN decision IS WS;
+	RULE 14 : IF Size IS S AND Win IS  VL AND Wout IS  S  AND PR_undir IS S THEN decision IS WS;
+	RULE 15 : IF Size IS S AND Win IS  VL AND Wout IS  L  AND PR_undir IS S THEN decision IS SS;
+	RULE 16 : IF Size IS S AND Win IS  VL AND Wout IS VL  AND PR_undir IS S THEN decision IS SS;
+
+    RULE 17 : IF Size IS M AND Win IS VS AND Wout IS VS  AND PR_undir IS S THEN decision IS SR;
+	RULE 18 : IF Size IS M AND Win IS VS AND Wout IS  S  AND PR_undir IS S THEN decision IS SR;
+	RULE 19 : IF Size IS M AND Win IS VS AND Wout IS  L  AND PR_undir IS S THEN decision IS WR;
+	RULE 20 : IF Size IS M AND Win IS VS AND Wout IS VL  AND PR_undir IS S THEN decision IS WS;
+	
+	RULE 21 : IF Size IS M AND Win IS  S AND Wout IS VS  AND PR_undir IS S THEN decision IS SR;
+	RULE 22 : IF Size IS M AND Win IS  S AND Wout IS  S  AND PR_undir IS S THEN decision IS SR;
+	RULE 23 : IF Size IS M AND Win IS  S AND Wout IS  L  AND PR_undir IS S THEN decision IS WR;
+	RULE 24 : IF Size IS M AND Win IS  S AND Wout IS VL  AND PR_undir IS S THEN decision IS SS;
+	
+	RULE 25 : IF Size IS M AND Win IS  L AND Wout IS VS  AND PR_undir IS S THEN decision IS WR;
+	RULE 26 : IF Size IS M AND Win IS  L AND Wout IS  S  AND PR_undir IS S THEN decision IS WR;
+	RULE 27 : IF Size IS M AND Win IS  L AND Wout IS  L  AND PR_undir IS S THEN decision IS WS;
+	RULE 28 : IF Size IS M AND Win IS  L AND Wout IS VL  AND PR_undir IS S THEN decision IS SS;
+
+    RULE 29 : IF Size IS M AND Win IS  VL AND Wout IS VS  AND PR_undir IS S THEN decision IS WR;
+	RULE 30 : IF Size IS M AND Win IS  VL AND Wout IS  S  AND PR_undir IS S THEN decision IS WR;
+	RULE 31 : IF Size IS M AND Win IS  VL AND Wout IS  L  AND PR_undir IS S THEN decision IS WS;
+	RULE 32 : IF Size IS M AND Win IS  VL AND Wout IS VL  AND PR_undir IS S THEN decision IS SS;
+
+    RULE 33 : IF Size IS L AND Win IS VS AND Wout IS VS  AND PR_undir IS S THEN decision IS SR;
+	RULE 34 : IF Size IS L AND Win IS VS AND Wout IS  S  AND PR_undir IS S THEN decision IS SR;
+	RULE 35 : IF Size IS L AND Win IS VS AND Wout IS  L  AND PR_undir IS S THEN decision IS WS;
+	RULE 36 : IF Size IS L AND Win IS VS AND Wout IS VL  AND PR_undir IS S THEN decision IS WS;
+	
+	RULE 37 : IF Size IS L AND Win IS  S AND Wout IS VS  AND PR_undir IS S THEN decision IS SR;
+	RULE 38 : IF Size IS L AND Win IS  S AND Wout IS  S  AND PR_undir IS S THEN decision IS WR;
+	RULE 39 : IF Size IS L AND Win IS  S AND Wout IS  L  AND PR_undir IS S THEN decision IS WS;
+	RULE 40 : IF Size IS L AND Win IS  S AND Wout IS VL  AND PR_undir IS S THEN decision IS SS;
+	
+	RULE 41 : IF Size IS L AND Win IS  L AND Wout IS VS  AND PR_undir IS S THEN decision IS WR;
+	RULE 42 : IF Size IS L AND Win IS  L AND Wout IS  S  AND PR_undir IS S THEN decision IS WS;
+	RULE 43 : IF Size IS L AND Win IS  L AND Wout IS  L  AND PR_undir IS S THEN decision IS WS;
+	RULE 44 : IF Size IS L AND Win IS  L AND Wout IS VL  AND PR_undir IS S THEN decision IS SS;
+
+    RULE 45 : IF Size IS L AND Win IS  VL AND Wout IS VS  AND PR_undir IS S THEN decision IS WS;
+	RULE 46 : IF Size IS L AND Win IS  VL AND Wout IS  S  AND PR_undir IS S THEN decision IS WS;
+	RULE 47 : IF Size IS L AND Win IS  VL AND Wout IS  L  AND PR_undir IS S THEN decision IS SS;
+	RULE 48 : IF Size IS L AND Win IS  VL AND Wout IS VL  AND PR_undir IS S THEN decision IS SS;
+
+
+	RULE 49 : IF Size IS S AND Win IS VS AND Wout IS VS AND PR_undir IS L THEN decision IS WR;
+	RULE 50 : IF Size IS S AND Win IS VS AND Wout IS  S  AND PR_undir IS L THEN decision IS WR;
+	RULE 51 : IF Size IS S AND Win IS VS AND Wout IS  L  AND PR_undir IS L THEN decision IS WR;
+	RULE 52 : IF Size IS S AND Win IS VS AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+	
+	RULE 53 : IF Size IS S AND Win IS  S AND Wout IS VS  AND PR_undir IS L THEN decision IS WR;
+	RULE 54 : IF Size IS S AND Win IS  S AND Wout IS  S  AND PR_undir IS L THEN decision IS WR;
+	RULE 55 : IF Size IS S AND Win IS  S AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 56 : IF Size IS S AND Win IS  S AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+	
+	RULE 57 : IF Size IS S AND Win IS  L AND Wout IS VS  AND PR_undir IS L THEN decision IS WS;
+	RULE 58 : IF Size IS S AND Win IS  L AND Wout IS  S  AND PR_undir IS L THEN decision IS WS;
+	RULE 59 : IF Size IS S AND Win IS  L AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 60 : IF Size IS S AND Win IS  L AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+
+    RULE 61 : IF Size IS S AND Win IS  VL AND Wout IS VS  AND PR_undir IS L THEN decision IS SS;
+	RULE 62 : IF Size IS S AND Win IS  VL AND Wout IS  S  AND PR_undir IS L THEN decision IS SS;
+	RULE 63 : IF Size IS S AND Win IS  VL AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 64 : IF Size IS S AND Win IS  VL AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+
+    RULE 65 : IF Size IS M AND Win IS VS AND Wout IS VS  AND PR_undir IS L THEN decision IS WR;
+	RULE 66 : IF Size IS M AND Win IS VS AND Wout IS  S  AND PR_undir IS L THEN decision IS WR;
+	RULE 67 : IF Size IS M AND Win IS VS AND Wout IS  L  AND PR_undir IS L THEN decision IS WS;
+	RULE 68 : IF Size IS M AND Win IS VS AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+	
+	RULE 69 : IF Size IS M AND Win IS  S AND Wout IS VS  AND PR_undir IS L THEN decision IS WR;
+	RULE 70 : IF Size IS M AND Win IS  S AND Wout IS  S  AND PR_undir IS L THEN decision IS WR;
+	RULE 71 : IF Size IS M AND Win IS  S AND Wout IS  L  AND PR_undir IS L THEN decision IS WS;
+	RULE 72 : IF Size IS M AND Win IS  S AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+	
+	RULE 73 : IF Size IS M AND Win IS  L AND Wout IS VS  AND PR_undir IS L THEN decision IS WS;
+	RULE 74 : IF Size IS M AND Win IS  L AND Wout IS  S  AND PR_undir IS L THEN decision IS WS;
+	RULE 75 : IF Size IS M AND Win IS  L AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 76 : IF Size IS M AND Win IS  L AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+
+    RULE 77 : IF Size IS M AND Win IS  VL AND Wout IS VS  AND PR_undir IS L THEN decision IS WS;
+	RULE 78 : IF Size IS M AND Win IS  VL AND Wout IS  S  AND PR_undir IS L THEN decision IS WS;
+	RULE 79 : IF Size IS M AND Win IS  VL AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 80 : IF Size IS M AND Win IS  VL AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+
+    RULE 81 : IF Size IS L AND Win IS VS AND Wout IS VS  AND PR_undir IS L THEN decision IS WR;
+	RULE 82 : IF Size IS L AND Win IS VS AND Wout IS  S  AND PR_undir IS L THEN decision IS WR;
+	RULE 83 : IF Size IS L AND Win IS VS AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 84 : IF Size IS L AND Win IS VS AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+	
+	RULE 85 : IF Size IS L AND Win IS  S AND Wout IS VS  AND PR_undir IS L THEN decision IS WR;
+	RULE 86 : IF Size IS L AND Win IS  S AND Wout IS  S  AND PR_undir IS L THEN decision IS WS;
+	RULE 87 : IF Size IS L AND Win IS  S AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 88 : IF Size IS L AND Win IS  S AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+	
+	RULE 89 : IF Size IS L AND Win IS  L AND Wout IS VS  AND PR_undir IS L THEN decision IS WS;
+	RULE 90 : IF Size IS L AND Win IS  L AND Wout IS  S  AND PR_undir IS L THEN decision IS SS;
+	RULE 91 : IF Size IS L AND Win IS  L AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 92 : IF Size IS L AND Win IS  L AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+
+    RULE 93 : IF Size IS L AND Win IS  VL AND Wout IS VS  AND PR_undir IS L THEN decision IS SS;
+	RULE 94 : IF Size IS L AND Win IS  VL AND Wout IS  S  AND PR_undir IS L THEN decision IS SS;
+	RULE 95 : IF Size IS L AND Win IS  VL AND Wout IS  L  AND PR_undir IS L THEN decision IS SS;
+	RULE 96 : IF Size IS L AND Win IS  VL AND Wout IS VL  AND PR_undir IS L THEN decision IS SS;
+
+
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+
