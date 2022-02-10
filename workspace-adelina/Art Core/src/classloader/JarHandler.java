@@ -49,7 +49,7 @@ public class JarHandler extends InputHandler {
 						list.add(tm);
 						is.close();
 					} catch (Throwable e) 
-					{System.out.println("Encountered problems when extracting dependencies for" + tm.getClassName());}
+					{System.out.println("Encountered problems when extracting dependencies for " + entryName);}
 				}
 			}
 			j.close();

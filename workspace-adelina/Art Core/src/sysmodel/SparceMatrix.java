@@ -29,6 +29,7 @@ public final class SparceMatrix<E> {
 	public void initEmptyMatrix() {
 		map = new HashMap<Integer, Map<Integer, E>>();
 		map2 = new HashMap<Integer, Map<Integer, E>>();
+		elements.clear();
 	}
 
 	public void putElement(int i, int j, E element) {

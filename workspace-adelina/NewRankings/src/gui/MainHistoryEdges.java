@@ -73,38 +73,38 @@ public class MainHistoryEdges {
 	private static String crtCfg;
 
 	static List<SystNames> systems = Arrays.asList(
-			/*new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ1x.csv"),
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ2x.csv"),
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ3x.csv"),
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ4x.csv"), 
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ5.csv"),
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ6.csv"),
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ7.csv"),
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ8.csv"), 
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ9.csv"),
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_links_1occ_filtered_occ10.csv")*/
-		
-			//new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ1.csv"),
-			//new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ2.csv"),
-			//new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ3.csv"),
-			//new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ4.csv"),
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ5.csv"),
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ6.csv"),
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ7.csv"),
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ8.csv"),
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ9.csv"),
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_links_1occ_filtered_occ10.csv")
+			/*new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_10.csv"),
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_20.csv"),
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_30.csv"),
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_40.csv"), 
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_50.csv"),
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_60.csv"),
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_70.csv"),
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_80.csv"), 
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_90.csv"),
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_100.csv")*/
+	
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_10.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_20.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_30.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_40.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_50.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_60.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_70.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_80.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_90.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_100.csv")
 			
-			/*new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ1.csv"),
-			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ2.csv"),
-		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ3.csv"),
-		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ4.csv"),
-		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ5.csv"),
-			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ6.csv"),
-			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ7.csv"),
-		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ8.csv"),
-		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ9.csv"),
-			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_links_1occ_filtered_occ10.csv")*/
+			/*new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_10.csv"),
+			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_20.csv"),
+		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_30.csv"),
+		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_40.csv"),
+		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_50.csv"),
+			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_60.csv"),
+			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_70.csv"),
+		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_80.csv"),
+		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_90.csv"),
+			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_100.csv")*/
 		   
 	);
 
@@ -121,7 +121,7 @@ public class MainHistoryEdges {
 			aucArray = new double[100][100];
 			indSystem = -1;
 			for (SystNames s : systems) {
-				doOneSystemWithHistory(s.jarName, s.refName, crtCfg, s.histName, true); 
+				doOneSystemWithHistory(s.jarName, s.refName, crtCfg, s.histName, false); 
 				//doOneSystemWithHistory: OnlyHist - overwrite=true , AddHistoryToStruct - overwrite=false
 				
 				//doOneSystem(s.jarName, s.refName, crtCfg);
