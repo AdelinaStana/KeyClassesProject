@@ -2,3 +2,9 @@
 *.log
 *.class
 workspace-adelina/.metadata/.*
+workspace-adelina/NewRankings/history/
+workspace-adelina/NewRankings/outputs/
+workspace-adelina/NewRankings/inputs/pom.xml
+workspace-adelina/NewRankings/inputs/log4j-core-2.10.0.jar.bak
+workspace-adelina/RawDataDump2/rankings.jar.bak
+workspace-adelina/RawDataDump2/rankings.jar
