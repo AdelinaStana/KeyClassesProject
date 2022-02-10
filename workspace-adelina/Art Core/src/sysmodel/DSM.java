@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,42 +29,38 @@ public class DSM {
 		dependencyMatrix.initEmptyMatrix();
 
 		BufferedReader in = new BufferedReader(new FileReader(historyFile));
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		for (int i = 0; i < dependencyMatrix.getNumberOfNodes(); i++) {
+			map.put(elementAt(i),i);
+		}
 
-		// for (int i = 0; i < dependencyMatrix.getNumberOfNodes(); i++)
-		// System.out.println(elementAt(i));
 
 		String line = null;
 		while ((line = in.readLine()) != null) {
 			String[] parts = line.split("\\s*,\\s*");
-			if (parts.length == 2) {
+			if (parts.length > 2) {
 				// System.out.println("history dependency " + parts[0] + " - " +
 				// parts[1]);
-				int ia = -1, ib = -1;
+				Integer ia = -1, ib = -1;
 				int historyWeight = 1;
+				try {
+					historyWeight = (int) Float.parseFloat(parts[2]);
+				}catch(Exception e)
+				{
+				}
 
-
-				for (int i = 0; i < dependencyMatrix.getNumberOfNodes(); i++) {
+				ia = map.get(parts[0]);
+				ib = map.get(parts[1]);
 					
-					if (elementAt(i).equals(parts[0])) {
-						// System.out.println("FOUND "+parts[0]+" at "+i);
-						ia = i;
-					}
-					if (elementAt(i).equals(parts[1])) {
-						// System.out.println("FOUND "+parts[1]+" at "+i);
-						ib = i;
-					}
-
-					//System.out.println("ia=" + ia + " ib=" + "" + ib);
-					if ((ia >= 0) && (ib >= 0)) {
-						//System.out.println("ADDED Hist");
-						dependencyMatrix.putElement(ib, ia, historyWeight);
+				if ((ia != null) && (ib != null)) 
+				{
 						dependencyMatrix.putElement(ia, ib, historyWeight);
-					}
 				}
 			}
 		}
 		in.close();
-
+		
 	}
 
 	
@@ -71,46 +68,38 @@ public class DSM {
 		
 
 		BufferedReader in = new BufferedReader(new FileReader(historyFile));
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		for (int i = 0; i < dependencyMatrix.getNumberOfNodes(); i++) {
+			map.put(elementAt(i),i);
+		}
 
 		String line = null;
 		while ((line = in.readLine()) != null) {
 			String[] parts = line.split("\\s*,\\s*");
-			if (parts.length == 2) {
+			if (parts.length > 2) {
 				// System.out.println("history dependency " + parts[0] + " - " +
 				// parts[1]);
-				int ia = -1, ib = -1;
+				Integer ia = -1, ib = -1;
 				int historyWeight = 1;
-
-
-				for (int i = 0; i < dependencyMatrix.getNumberOfNodes(); i++) {
+				
+				try {
+					historyWeight = (int) Float.parseFloat(parts[2]);
+				}catch(Exception e)
+				{}
+				
+				ia = map.get(parts[0]);
+				ib = map.get(parts[1]);
 					
-					if (elementAt(i).equals(parts[0])) {
-						// System.out.println("FOUND "+parts[0]+" at "+i);
-						ia = i;
-					}
-					if (elementAt(i).equals(parts[1])) {
-						// System.out.println("FOUND "+parts[1]+" at "+i);
-						ib = i;
-					}
-
-					//System.out.println("ia=" + ia + " ib=" + "" + ib);
-					if ((ia >= 0) && (ib >= 0)) {
-						//System.out.println("ADDED Hist");
-						Integer oldValue1 = dependencyMatrix.getElement(ib, ia);
-						if (oldValue1!=null)
-							dependencyMatrix.putElement(ib, ia, oldValue1+historyWeight);
-						else dependencyMatrix.putElement(ib, ia, historyWeight);
-						
-						Integer oldValue2 = dependencyMatrix.getElement(ia, ib);
-						if (oldValue2!=null)
+				if ((ia != null) && (ib != null)) 
+				{
+					Integer oldValue2 = dependencyMatrix.getElement(ia, ib);
+					if (oldValue2!=null)
 							dependencyMatrix.putElement(ia, ib, oldValue2+historyWeight);
-						else dependencyMatrix.putElement(ia, ib, historyWeight);
-					}
+					else dependencyMatrix.putElement(ia, ib, historyWeight);
 				}
 			}
 		}
 		in.close();
-
 	}
 
 	
