@@ -84,7 +84,7 @@ public class MainHistoryEdges {
 			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_90.csv"),
 			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_100.csv")*/
 	
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_10.csv"),
+			/*new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_10.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_20.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_30.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_40.csv"),
@@ -93,9 +93,9 @@ public class MainHistoryEdges {
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_70.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_80.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_90.csv"),
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_100.csv")
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_100.csv")*/
 			
-			/*new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_10.csv"),
+			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_10.csv"),
 			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_20.csv"),
 		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_30.csv"),
 		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_40.csv"),
@@ -104,7 +104,7 @@ public class MainHistoryEdges {
 			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_70.csv"),
 		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_80.csv"),
 		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_90.csv"),
-			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_100.csv")*/
+			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_100.csv")
 		   
 	);
 

@@ -1,8 +1,10 @@
 package sysmodel;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +57,7 @@ public class DSM {
 					
 				if ((ia != null) && (ib != null)) 
 				{
-						dependencyMatrix.putElement(ia, ib, historyWeight);
+						dependencyMatrix.putElement(ib, ia, historyWeight);
 				}
 			}
 		}
@@ -72,7 +74,9 @@ public class DSM {
 		for (int i = 0; i < dependencyMatrix.getNumberOfNodes(); i++) {
 			map.put(elementAt(i),i);
 		}
-
+		FileWriter writer = new FileWriter("struct_dep_vals.txt");
+		FileWriter writer2 = new FileWriter("found.txt");
+	    
 		String line = null;
 		while ((line = in.readLine()) != null) {
 			String[] parts = line.split("\\s*,\\s*");
@@ -92,13 +96,18 @@ public class DSM {
 					
 				if ((ia != null) && (ib != null)) 
 				{
-					Integer oldValue2 = dependencyMatrix.getElement(ia, ib);
-					if (oldValue2!=null)
-							dependencyMatrix.putElement(ia, ib, oldValue2+historyWeight);
-					else dependencyMatrix.putElement(ia, ib, historyWeight);
+					Integer oldValue = dependencyMatrix.getElement(ib, ia);
+					writer2.write(ia.toString()+" - "+ib.toString()+"\n");
+					if (oldValue!=null)
+						writer.write(oldValue.toString()+"\n");
+					if (oldValue!=null)
+							dependencyMatrix.putElement(ib, ia, oldValue+historyWeight);
+					else dependencyMatrix.putElement(ib, ia, historyWeight);
 				}
 			}
 		}
+		writer2.close();
+		writer.close();
 		in.close();
 	}
 
