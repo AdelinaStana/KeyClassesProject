@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,7 +112,46 @@ public class DSM {
 		in.close();
 	}
 
-	
+	public void exportStructuralDependencies(String fileName)
+	{
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            
+			for (int i = 0; i < dependencyMatrix.getNumberOfNodes() * 1; i++) {
+				String first = elementAt(i);
+				if (first!=null)
+					{
+					for (int j = 0; j < dependencyMatrix.getNumberOfNodes(); j++) {
+						if (i!=j)
+						{
+							String second = elementAt(j);
+							if(second!=null)
+							{
+								Integer val =  dependencyMatrix.getElement(i, j);
+							
+								if (val!=null)
+								{
+									fileWriter.append(first);
+									fileWriter.append(",");
+									fileWriter.append(second);
+									fileWriter.append(",");
+									fileWriter.append(Integer.toString(val));
+									fileWriter.append(",");
+									fileWriter.append("\n");
+								}
+							}
+						}
+					}
+					}
+			}
+        
+        fileWriter.close();
+        }catch (IOException e) {
+            System.out.println("Error writing to file " + fileName);
+            e.printStackTrace();
+        }
+		System.out.println("File saved as "+fileName);
+	}
 	
 	public void collapseInnerClasses() {
 		for (int i = 0; i < dependencyMatrix.getNumberOfNodes() * 1; i++) {

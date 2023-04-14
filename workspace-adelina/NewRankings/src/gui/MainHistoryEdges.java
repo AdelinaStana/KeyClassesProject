@@ -78,7 +78,7 @@ public class MainHistoryEdges {
 	private static String crtCfg;
 
 	static List<SystNames> systems = Arrays.asList(
-			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_10.csv")
+			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_10.csv"),
 			/*new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_20.csv"),
 			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_30.csv"),
 			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_40.csv"), 
@@ -89,8 +89,8 @@ public class MainHistoryEdges {
 			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_90.csv"),
 			new SystNames("ant.jar", "ant.jar-zaidman-nocoll.txt", "ant_git_strength_100.csv")*/
 	
-			/*new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_10.csv"),
-			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_20.csv"),
+			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_10.csv"),
+			/*new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_20.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_30.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_40.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_50.csv"),
@@ -100,8 +100,8 @@ public class MainHistoryEdges {
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_90.csv"),
 			new SystNames("hibernate-core-5.2.12.Final.jar", "hibernate5.2.txt", "hibernate_git_strength_100.csv")*/
 			
-			/*new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_10.csv"),
-			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_20.csv"),
+			new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_10.csv")
+			/*new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_20.csv"),
 		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_30.csv"),
 		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_40.csv"),
 		    new SystNames("tomcat-catalina-9.0.4.jar", "catalina.txt", "catalina_git_strength_50.csv"),
@@ -183,6 +183,7 @@ public class MainHistoryEdges {
 
 		DSM dsm = sm.computeDSM();
 		dsm.collapseInnerClasses();
+		dsm.exportStructuralDependencies("D:\\structural_dep_"+inputFile.replace(".jar", ".csv"));
 		
 		System.out.println("done...");
 		
