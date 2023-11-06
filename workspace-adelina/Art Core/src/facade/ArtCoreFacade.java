@@ -112,7 +112,7 @@ public class ArtCoreFacade
 		beginning = System.currentTimeMillis();
 
 		dsm = sm.computeDSM();
-		//dsm.collapseInnerClasses();
+		dsm.collapseInnerClasses();
 
 		System.out.println("DSM built in " + ((double) System.currentTimeMillis() - beginning) / 1000);
 

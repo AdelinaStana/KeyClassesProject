@@ -182,7 +182,7 @@ public class MainHistoryEdges {
 		}
 
 		DSM dsm = sm.computeDSM();
-		dsm.collapseInnerClasses();
+		//dsm.collapseInnerClasses();
 		dsm.exportStructuralDependencies("D:\\structural_dep_"+inputFile.replace(".jar", ".csv"));
 		
 		System.out.println("done...");
